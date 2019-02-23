@@ -98,14 +98,14 @@
                             </ul>
                         </li>
                         <!-- Languages dropdown    -->
-                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="/moban/img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
+                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block"> {{ auth()->user()->name }}</span></a>
                             <ul aria-labelledby="languages" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="/moban/img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="/moban/img/flags/16/FR.png" alt="English" class="mr-2">French                                         </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item"> 个人中心</a></li>
+                                <li><a rel="nofollow" href="{{ route('admin.edit',[auth()->user()]) }}" class="dropdown-item">修改密码 </a></li>
                             </ul>
                         </li>
                         <!-- Logout    -->
-                        <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                        <li class="nav-item"><a href="{{route('logout')}}" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -132,23 +132,26 @@
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>
                         <li><a href="{{route('shop_category.create')}}">商品添加分类</a></li>
-                        <li><a href="#">Page</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>1 </a>
+
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Admin </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>
-                        <li><a href="{{route('shop_category.create')}}">商品添加分类</a></li>
-                        <li><a href="#">Page</a></li>
+                        <li><a href="{{route('admin.index')}}">管理员列表</a></li>
+                        <li><a href="{{route('admin.create')}}">添加管理员</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>2 </a>
+
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家管理 </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>
-                        <li><a href="{{route('shop_category.create')}}">商品添加分类</a></li>
+                        <li><a href="{{route('shop.index')}}">商家列表</a></li>
+                        <li><a href="{{route('shop.create')}}">添加商家</a></li>
                         <li><a href="#">Page</a></li>
                     </ul>
                 </li>
+
                 <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>
             </ul><span class="heading">Extras</span>
             <ul class="list-unstyled">

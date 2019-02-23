@@ -20,8 +20,8 @@
                 <tr>
                     <th>#</th>
                     <th>商家类别</th>
+                    <th>图片</th>
                     <th>状态</th>
-                    {{--<th>操作</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>{{ $shop_categories->name}}</td>
-
+                    <td> <img width="60px" src="{{ $shop_categories->img}}">     </td>
                     <td>
                         @if ( $shop_categories->status===1)
                        显示
@@ -38,17 +38,7 @@
                         @endif
 
                                          </td>
-                    <td>
-{{--                        <a href="{{route('shop_category.edit',[$shop_category])}}" class="btn btn-info">编辑</a>--}}
-                        {{--<a href="{{ route('shop_category.show',[ $shop_category]) }}" class="btn btn-warning">查看</a>--}}
-                        {{--<form  method="post" action="{{ route('shop_category.destroy',[ $shop_category]) }}">--}}
-                            {{--{{ csrf_field() }}--}}
-                            {{--{{ method_field('delete') }}--}}
-                            {{--<button type="submit" class="btn btn-danger">删除</button>--}}
-                        {{--</form>--}}
 
-
-                    </td>
                 </tr>
 {{--@endforeach--}}
                 {{ csrf_field() }}

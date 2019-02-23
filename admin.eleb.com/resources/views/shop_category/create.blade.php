@@ -62,14 +62,35 @@
                             </div>
 
 
-
                             {{--开始--}}
                             <div class="card-header d-flex align-items-center">
                                 <h3 class="h4">添加商品分类</h3>
-
                             </div>
+
+
+{{--提交表单--}}
                             <div class="card-body">
                                 <form class="form-horizontal" method="post" action="{{ route('shop_category.store') }}" enctype="multipart/form-data">
+
+
+                                    {{--错误提示--}}
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label"></label>
+                                        <div class="col-sm-9 offset-sm-3">
+                                            @if (count($errors) > 0)
+                                                <select multiple="" class="form-control" style="color: red">
+
+                                                    <option> 请注意</option>
+                                                    @foreach($errors->all() as $error)
+                                                        <option value="{{ $error }}">{{ $error }}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+                                        </div>
+                                    </div>
+{{--分类--}}
+
+                                    <div class="line"></div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 form-control-label">分类名</label>
                                         <div class="col-sm-9">
@@ -90,7 +111,7 @@
                                         <div class="col-sm-9">
                                             <select name="status" class="form-control mb-3">
                                                 <option value="1">是</option>
-                                                <option value="2">否</option>
+                                                <option value="0">否</option>
 
                                             </select>
                                         </div>

@@ -25,3 +25,13 @@ Route::get('/', function () {
 //Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');//删除用户信息
 // 商家分类路由
 Route::resource('shop_category', 'ShopCategoryController');
+Route::resource('shop', 'ShopController');
+////审核路由
+Route::get('/shop/{shop}/start','ShopController@start')->name('shop.start');
+Route::get('shop/{shop}/down','ShopController@down')->name('shop.down');
+//管理员路由
+Route::resource('admin', 'AdminController');
+//登录和注销
+Route::get('login','LoginController@create')->name('login');
+Route::post('login','LoginController@store')->name('login');
+Route::get('logout','LoginController@destroy')->name('logout');
