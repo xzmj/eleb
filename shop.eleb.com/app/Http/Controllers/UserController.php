@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -50,6 +52,12 @@ class UserController extends Controller
 //        dd($img);
         $path=$img->store('public/shop');
 // dd($path);
+
+
+//        使用事务功能
+        DB::transaction(function () use($request,$path){
+
+
 //        商家信息
         $data = [
             'shop_name'=>$request->shop_name,
@@ -86,18 +94,58 @@ class UserController extends Controller
             'shop_id'=>$shop_id,
             'name'=>$request->name,
             'email'=>$request->email,
-            Hash::make($request->password)
+           'password'=> Hash::make($request->password)
 
             ];
 //        存入商家账号信息
         User::create($data2);
-
+        });//方法事务结束
 
 //        dd($aa);
         return redirect()->route('user.create')->with('success','添加成功');
     }
 
 
+
+
+//    修改密码页面
+    public function pwd(){
+//        echo 'woaa';
+
+        return view('user.pwd');
+    }
+
+    public function savepwd(Request $request){
+//        echo 'woaa';
+
+        //数据验证，验证不通过，返回表单并提示错误信息
+        $this->validate($request,
+            [//验证规则
+//
+                'oldpassword'=>'required',
+                'newpassword'=>'required',
+            ],
+            [//错误提示信息
+//
+                'oldpassword.required'=>'原密码不能为空',
+                'newpassword.required'=>'新密码不能为空',
+
+            ]);
+
+
+
+        $user =Auth::user();
+//        dd($admin->password);
+//        将输入的old密码与session登录信息里面面的密码进行对比
+        if(!Hash::check($request->oldpassword,$user->password)){
+            return back()->with('danger','原密码不正确');
+        }
+//        对比正确后改变为新密码
+        {
+            $user->update(['password'=>Hash::make($request->newpassword)]);
+            return view('user.pwd');
+        }
+    }
 
 /////修改
 //    public function edit(User $shop){

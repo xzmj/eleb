@@ -29,4 +29,21 @@ Route::get('/', function () {
 //////审核路由
 //Route::get('/shop/{shop}/start','ShopController@start')->name('shop.start');
 //Route::get('shop/{shop}/down','ShopController@down')->name('shop.down');
+
+
+
+//商家账号修改密码路由
+Route::get('user/pwd','UserController@pwd')->name('user.pwd');
+Route::patch('user/savepwd','UserController@savepwd')->name('user.savepwd');
+//商户账号路由
 Route::resource('user', 'UserController');
+
+
+//登录和注销
+Route::get('login','LoginController@create')->name('login');
+Route::post('login','LoginController@store')->name('login');
+Route::get('logout','LoginController@destroy')->name('logout');
+
+//商户账号修改密码
+Route::get('user/pwd','UserController@pwd')->name('user.pwd');
+Route::patch('user/savepwd','UserController@savepwd')->name('user.savepwd');

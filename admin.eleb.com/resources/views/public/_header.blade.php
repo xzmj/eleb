@@ -97,15 +97,17 @@
                                 <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
                             </ul>
                         </li>
+                    @auth
                         <!-- Languages dropdown    -->
                         <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block"> {{ auth()->user()->name }}</span></a>
                             <ul aria-labelledby="languages" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item"> 个人中心</a></li>
-                                <li><a rel="nofollow" href="{{ route('admin.edit',[auth()->user()]) }}" class="dropdown-item">修改密码 </a></li>
+                                <li><a rel="nofollow" href="{{ route('admin.pwd')}}" class="dropdown-item"> 个人中心</a></li>
+                                <li><a rel="nofollow" href="{{route('admin.pwd')}}" class="dropdown-item">修改密码 </a></li>
                             </ul>
                         </li>
                         <!-- Logout    -->
                         <li class="nav-item"><a href="{{route('logout')}}" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                            @endauth
                     </ul>
                 </div>
             </div>
@@ -148,6 +150,8 @@
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="{{route('shop.index')}}">商家列表</a></li>
                         <li><a href="{{route('shop.create')}}">添加商家</a></li>
+                        <li><a href="{{route('user.index')}}">商家账号列表</a></li>
+                        <li><a href="{{route('user.create')}}">添加商家账号</a></li>
                         <li><a href="#">Page</a></li>
                     </ul>
                 </li>

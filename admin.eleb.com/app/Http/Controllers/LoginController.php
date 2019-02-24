@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+
+//    public function __construct()
+//    {
+//        //只能游客才能访问
+//        $this->middleware('guest',[
+//            'only'=>['create']
+////            'except'=>['index']
+//        ]);
+//    }
 //      用户登录
         public function create()
         {
@@ -31,7 +40,7 @@ class LoginController extends Controller
             return redirect()->intended(route('shop.index'))->with('success','登录成功');
         }else{//账号密码不正确
 
-            return back();
+            return back()->with('danger','账号密码不正确');
         }
 
     }

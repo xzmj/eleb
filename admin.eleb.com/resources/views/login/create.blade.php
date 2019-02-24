@@ -56,6 +56,15 @@
                     </div><input type="submit" class="btn btn-infor">
                     <input type="checkbox" name="rememberMe">rememberMe
                   {{ csrf_field() }}
+{{--错误提示--}}
+                    @foreach(['success','info','warning','danger'] as $status)
+                      @if(session()->has($status))
+                        <div class="alert alert-{{ $status }} alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          {{ session($status) }}</div>
+                    @endif
+                  @endforeach
+
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                   </form><a href="#" class="forgot-pass">忘记密码点这里</a><br><small>想加入我们吗 </small><a href="register.html" class="signup">注册</a>
                 </div>

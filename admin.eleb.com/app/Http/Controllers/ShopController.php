@@ -11,6 +11,16 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
 
+//    public function __construct()
+//    {
+//        //只能游客才能访问
+//        $this->middleware('guest',[
+//////            'only'=>['login.create']
+//            'except'=>['login','create']
+//        ]);
+//    }
+
+
     public function index(Request $request){
 
 $shops=Shop::all();

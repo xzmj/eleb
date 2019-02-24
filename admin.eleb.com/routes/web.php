@@ -26,11 +26,31 @@ Route::get('/', function () {
 // 商家分类路由
 Route::resource('shop_category', 'ShopCategoryController');
 Route::resource('shop', 'ShopController');
-////审核路由
+
+
+////商家审核路由
 Route::get('/shop/{shop}/start','ShopController@start')->name('shop.start');
 Route::get('shop/{shop}/down','ShopController@down')->name('shop.down');
+
+
+//管理员修改密码
+Route::get('admin/pwd','AdminController@pwd')->name('admin.pwd');
+Route::patch('admin/savepwd','AdminController@savepwd')->name('admin.savepwd');
+
+
 //管理员路由
 Route::resource('admin', 'AdminController');
+
+
+//商户账号路由
+Route::resource('user', 'UserController');
+
+////商家账号审核路由
+Route::get('/user/{user}/start','UserController@start')->name('user.start');
+Route::get('user/{user}/down','UserController@down')->name('user.down');
+
+
+
 //登录和注销
 Route::get('login','LoginController@create')->name('login');
 Route::post('login','LoginController@store')->name('login');

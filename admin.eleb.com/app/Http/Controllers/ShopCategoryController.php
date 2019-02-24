@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Storage;
 class ShopCategoryController extends Controller
 {
     //
+
+//    public function __construct()
+//    {
+        //只能游客才能访问
+//        $this->middleware('guest',[
+//            'only'=>['edit]
+////            'except'=>['index','create','edit']
+//        ]);
+//    }
+
+
     public function index(){
 $shop_categories=ShopCategory::all();
         return view('shop_category.index',['shop_categories'=>$shop_categories]);
