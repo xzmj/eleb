@@ -131,15 +131,15 @@
                 <li><a href="#"> <i class="icon-grid"></i>Tables </a></li>
                 <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
 {{--                <li><a href="{{route('user.create')}}"> <i class="icon-padnote"></i>Forms </a></li>--}}
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家分类 </a>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>菜品分类 </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         {{--<li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>--}}
-                        {{--<li><a href="{{route('shop_category.create')}}">商品添加分类</a></li>--}}
+                        <li><a href="{{route('menu_category.create')}}">菜品添加分类</a></li>
                         <li><a href="#">Page</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>1 </a>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家账号管理</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
 {{--                        <li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>--}}
                         <li><a href="{{route('user.create')}}">商家注册</a></li>

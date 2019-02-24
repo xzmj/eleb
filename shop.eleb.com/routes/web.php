@@ -47,3 +47,5 @@ Route::get('logout','LoginController@destroy')->name('logout');
 //商户账号修改密码
 Route::get('user/pwd','UserController@pwd')->name('user.pwd');
 Route::patch('user/savepwd','UserController@savepwd')->name('user.savepwd');
+//菜品分类路由
+Route::resource('menu_category', 'MenuCategoryController');

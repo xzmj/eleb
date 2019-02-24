@@ -16,7 +16,7 @@ class Shop extends Model
 
     public function shop_category()
     {
-        return $this->belongsTo(ShopCategory::class,'shop_category_id','id');
+        return $this->belongsTo(ShopCategory::class);
 
     }
 
