@@ -53,7 +53,7 @@
                     <td>{{ $menu_category->type_accumulation	}}</td>
                     <td>{{ $menu_category->shop->shop_name}}</td>
                     <td>{{ $menu_category->description}}</td>
-                    <td>@if($menu_category->is_selected===1)是@else否@endif</td>
+                    <td>@if($menu_category->is_selected==1)是@else否@endif</td>
 
                     <td>
                         <a href="{{ route('menu_category.edit',[ $menu_category]) }}" class="btn btn-info">编辑</a>
@@ -65,12 +65,23 @@
                         </form>
                     </td>
                 </tr>
+
 @endforeach
+
 
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="line"></div>
+    <div class="form-group row">
+        <label class="col-sm-3 form-control-label"></label>
+        <div class="col-sm-9">
+           {{ $menu_categories->links() }}
+
+        </div>
+    </div>
+
     </div>
     </div>
     <div class="col-lg-6">

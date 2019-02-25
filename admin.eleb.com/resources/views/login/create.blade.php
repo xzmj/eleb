@@ -35,9 +35,9 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Dashboard</h1>
+                    <h1> 饣 我 了 口 巴</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p>看你都饿的眼花了</p>
                 </div>
               </div>
             </div>

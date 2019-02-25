@@ -43,9 +43,17 @@ Route::resource('user', 'UserController');
 Route::get('login','LoginController@create')->name('login');
 Route::post('login','LoginController@store')->name('login');
 Route::get('logout','LoginController@destroy')->name('logout');
-
+Route::get('menu/showgoods/{menu_category}','MenuController@showgoods')->name('showgoods.category');
 //商户账号修改密码
 Route::get('user/pwd','UserController@pwd')->name('user.pwd');
 Route::patch('user/savepwd','UserController@savepwd')->name('user.savepwd');
 //菜品分类路由
 Route::resource('menu_category', 'MenuCategoryController');
+//菜谱路由
+Route::resource('menu', 'MenuController');
+
+//活动路由
+Route::resource('activity', 'ActivityController');
+
+
+//查看菜品分类下的菜品

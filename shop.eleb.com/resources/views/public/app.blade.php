@@ -1,3 +1,4 @@
+@include('/vendor/ueditor/assets')
 @include('public._header')
 
 

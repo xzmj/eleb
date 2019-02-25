@@ -132,7 +132,12 @@
 
                                         </div>
                                     </div>
-
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 offset-sm-3">
+                                            <a href="{{route('menu.index')}}" class="btn btn-primary">返回</a>
+                                        </div>
+                                    </div>
 
                                     {{ csrf_field() }}
                                     {{ method_field('patch') }}

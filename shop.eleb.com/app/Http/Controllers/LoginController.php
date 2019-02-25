@@ -39,7 +39,7 @@ class LoginController extends Controller
         {//账号密码正确 ，创建会话（保存当前用户的信息到session）
 
 //            判断账户是否状态可用
-            return redirect()->intended(route('user.create'))->with('success','登录成功');
+            return redirect()->intended(route('menu.index'))->with('success','登录成功');
         }else{//账号密码不正确
 
             return back()->with('danger','账号密码不正确或账号停用请联系管理员');

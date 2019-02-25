@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\MenuCategory;
 use App\Models\Shop;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class MenuCategoryController extends Controller
 
 
     public function index(){
-$menu_categories=MenuCategory::all();
+$menu_categories=MenuCategory::paginate(4);
         return view('menu_category.index',['menu_categories'=>$menu_categories]);
     }
 
@@ -66,6 +67,11 @@ $menu_category=MenuCategory::find($menu_category->id);
                 'type_accumulation.required'=>'菜品编号不能为空',
 
             ]);
+//        如果要添加的菜品是默认分类那么先修改其他的分类是默认分类的为非默认分类
+        if($request->is_selected==1){
+            MenuCategory::where('is_selected','=','1')->update(['is_selected'=>'0']);
+
+        }
 
         $data = [
             'name'=>$request->name,
@@ -99,10 +105,13 @@ $menu_category=MenuCategory::find($menu_category->id);
                 'type_accumulation.required'=>'菜品编号不能为空',
 
             ]);
-//        dd($menu_category);
 
-//        dd($request->img);
-//        判断是否上传了新的图片
+
+//        如果要修改菜品为默认分类那么先修改其他的分类是默认分类的为非默认分类
+        if($request->is_selected==1){
+            MenuCategory::where('is_selected','=','1')->update(['is_selected'=>'0']);
+
+        }
 
             $data = [
 
@@ -138,9 +147,18 @@ $menu_category=MenuCategory::find($menu_category->id);
     public function destroy(MenuCategory $menu_category)
     {
 //        dd($menu_category);
-        MenuCategory::destroy($menu_category->id);
+        $menus = DB::select('select * from menus where category_id = ?',[$menu_category->id]);
+//dd($menus);
+        if(!$menus){
+            MenuCategory::destroy($menu_category->id);
+            return redirect()->route('menu_category.index');
+        }else{
+            return back()->with('danger','该分类下有菜品了不能删除!');
+        }
 
-        return redirect()->route('menu_category.index');
+
+
+
     }
 
 

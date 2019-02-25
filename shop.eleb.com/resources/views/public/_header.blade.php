@@ -135,7 +135,10 @@
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         {{--<li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>--}}
                         <li><a href="{{route('menu_category.create')}}">菜品添加分类</a></li>
-                        <li><a href="#">Page</a></li>
+                        <li><a href="{{route('menu_category.index')}}">菜品分类列表</a></li>
+                        <li><a href="{{route('menu.index')}}">菜品列表</a></li>
+                        <li><a href="{{route('menu.create')}}">添加菜品</a></li>
+
                     </ul>
                 </li>
 
@@ -150,7 +153,7 @@
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家管理 </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         {{--<li><a href="{{route('shop.index')}}">商家列表</a></li>--}}
-                        {{--<li><a href="{{route('shop.create')}}">添加商家</a></li>--}}
+                        <li><a href="{{route('activity.create')}}">添加活动</a></li>
                         <li><a href="#">Page</a></li>
                     </ul>
                 </li>

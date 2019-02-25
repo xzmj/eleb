@@ -35,9 +35,9 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Dashboard</h1>
+                    <h1> 饣 我 了 口 巴</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p>看你都饿的眼花了</p>
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@
                   <form method="post" class="form-validate" action="{{ route('login') }}">
                     <div class="form-group">
                       <input id="login-username" type="text" name="name" required data-msg="Please enter your username" class="input-material">
-                      <label for="login-username" class="label-material">管理员</label>
+                      <label for="login-username" class="label-material">商家账号</label>
                     </div>
                     <div class="form-group">
                       <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
