@@ -115,6 +115,18 @@
                                         </div>
                                     </div>
 
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">管理员角色</label>
+                                        <div class="col-sm-9">
+                                            <select name="role" class="form-control mb-3">
+                                                @foreach($roles as $ds)
+                                                    <option value="{{$ds->name}}">{{$ds->name}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
 
 
 

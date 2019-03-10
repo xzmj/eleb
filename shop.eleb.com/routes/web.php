@@ -50,10 +50,22 @@ Route::patch('user/savepwd','UserController@savepwd')->name('user.savepwd');
 //菜品分类路由
 Route::resource('menu_category', 'MenuCategoryController');
 //菜谱路由
+
 Route::resource('menu', 'MenuController');
 
 //活动路由
 Route::resource('activity', 'ActivityController');
-
-
-//查看菜品分类下的菜品
+Route::post('/upload', 'MenuController@upload');
+// 订单
+Route::resource('order', 'OrderController');
+//取消订单
+Route::get('/order/{order}/edit2', 'OrderController@edit2')->name('order.edit2');//修改用户表单
+//
+////最近7天订单量
+Route::get('seven', 'OrderController@seven')->name('order.seven');
+////最近7天订单量
+Route::get('thirty', 'OrderController@thirty')->name('order.thirty');
+////最近7天商品销量
+Route::get('sevengoods', 'OrderController@sevengoods')->name('order.sevengoods');
+//试用活动路由
+Route::resource('event', 'EventController');

@@ -24,7 +24,8 @@ class MenuCategoryController extends Controller
 
 
     public function index(){
-$menu_categories=MenuCategory::paginate(4);
+$menu_categories=MenuCategory::where('shop_id','=',auth()->user()->shop_id)->paginate(2);
+//dd($menu_categories);
         return view('menu_category.index',['menu_categories'=>$menu_categories]);
     }
 

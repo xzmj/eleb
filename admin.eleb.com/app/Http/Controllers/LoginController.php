@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
 
-//    public function __construct()
-//    {
-//        //只能游客才能访问
-//        $this->middleware('guest',[
-//            'only'=>['create']
-////            'except'=>['index']
-//        ]);
-//    }
+    public function __construct()
+    {
+        //只能游客才能访问
+        $this->middleware('guest',[
+            'only'=>['create']
+//            'except'=>['index']
+        ]);
+    }
 //      用户登录
         public function create()
         {

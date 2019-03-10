@@ -106,6 +106,19 @@
                                             <input type="password" name="password" class="form-control" value="{{$admin->password}}">
                                         </div>
                                     </div>
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">角色权限 <br><small class="text-primary">请选择权限</small></label>
+                                        <div class="col-sm-9">
+                                            @foreach($roles as $ds)
+                                                <div class="i-checks">
+                                                    <input id="checkboxCustom1" type="checkbox" name="role[]" value="{{$ds->name}}"  @if($admin->hasRole($ds)) checked @endif class="checkbox-template">
+                                                    <label for="checkboxCustom1">{{$ds->name}}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
 
 
 

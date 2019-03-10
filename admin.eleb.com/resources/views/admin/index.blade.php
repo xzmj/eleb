@@ -50,6 +50,7 @@
                     <td>{{ $admin->name}}</td>
                     <td>{{ $admin->email}}</td>
 
+
                     <td>
                         <a href="{{ route('admin.edit',[ $admin]) }}" class="btn btn-info">编辑</a>
                         <a href="{{ route('admin.show',[ $admin]) }}" class="btn btn-info">查看</a>

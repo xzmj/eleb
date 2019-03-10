@@ -7,42 +7,42 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
     //
 
-//
+//页面管理
 //    public function __construct()
 //    {
-//        //只能游客才能访问
-//        $this->middleware('guest',[
-//////            'only'=>['login.create']
-//            'except'=>['login','create']
-//        ]);
+//        //设置中间件
+//        $this->middleware('auth');
 //    }
+
 
     //
     public function index(){
+        $roles=Role::all();
         $admins=Admin::all();
-        return view('admin.index',['admins'=>$admins]);
+        return view('admin.index',['admins'=>$admins,['roles'=>$roles]]);
     }
 
 
-//创建新的商家分类的视图
+//创建新管理员的视图
     public function create(){
-
-        return view('admin.create');
+        $roles=Role::all();
+        return view('admin.create',['roles'=>$roles]);
     }
 //修改视图
 
     public function edit(Admin $admin){
-
+        $roles=Role::all();
         $admin=Admin::find($admin->id);
 //dd($admin->status);
 
-        return view('admin.edit',['admin'=>$admin]);
+        return view('admin.edit',['admin'=>$admin,'roles'=>$roles]);
     }
 
     public function store(Request $request)
@@ -56,20 +56,22 @@ class AdminController extends Controller
                 'email'=>'required',
             ],
             [//错误提示信息
-                'name.required'=>'类名名不能为空',
+                'name.required'=>'姓名不能为空',
                 'email.required'=>'email不能为空',
                 'password.required'=>'密码不能为空',
-
             ]);
-
         $data = [
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
         ];
+//// 接收要创建的管理员的角色
+        $role=$request->role;
 //        dd($data);
-        Admin::create($data);
-//        dd($aa);
+        $admin=Admin::create($data);
+//        dd($aa);////
+
+        $admin->syncRoles($role);
         return redirect()->route('admin.index')->with('success','添加成功');
     }
 
@@ -98,7 +100,11 @@ class AdminController extends Controller
                 $admin->email = $request->email,
                 $admin->password =Hash::make($request->password),
             ];
+// 接收要创建的管理员的角色
+        $role=$request->role;
 
+
+        $admin->syncRoles($role);
         $admin->save($data);
 //        dd($aa);
         return redirect()->route('admin.index')->with('success','成功修改');

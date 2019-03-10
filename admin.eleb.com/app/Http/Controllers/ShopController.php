@@ -6,19 +6,18 @@ use App\Models\ShopCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+//页面管理
+    public function __construct()
+    {
+        //设置中间件
+        $this->middleware('auth');
+    }
 
-//    public function __construct()
-//    {
-//        //只能游客才能访问
-//        $this->middleware('guest',[
-//////            'only'=>['login.create']
-//            'except'=>['login','create']
-//        ]);
-//    }
 
 
     public function index(Request $request){
@@ -123,8 +122,28 @@ public function start(Shop $shop,Request $request){
 //dd($shop);
 //    $shops=Shop::find($shop->id);
 //    dd($shop);
+
     DB::update("update shops set status = 1 where id = $shop->id");
     $shops=Shop::all();
+    $emil=User::where('shop_id','=',$shop->id)->first();
+
+    $title = '系统通知';
+    $content = '<p>
+饿了吧<span style="color: red">祝贺您</span>！
+你的核申已经通过了</p >';
+    try{
+        \Illuminate\Support\Facades\Mail::send('shop.youjian',compact('title','content'),
+            function($message){
+
+
+                $to='905978460@qq.com';
+
+                $message->from(env('MAIL_USERNAME'))->to($to)->subject('亲 重要消息看这里!');
+            });
+    }catch (Exception $e){
+        return '邮件发送失败';
+//
+    }
 
 
     return view('shop.index',['shops'=>$shops]);

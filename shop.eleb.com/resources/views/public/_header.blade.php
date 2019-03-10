@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{--<!DOCTYPE html>--}}
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,6 +24,9 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/echarts/4.1.0/echarts-en.common.js"></script>
 </head>
 <body>
 <div class="page">
@@ -129,9 +132,24 @@
             <ul class="list-unstyled">
                 <li ><a href="#"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="#"> <i class="icon-grid"></i>Tables </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>商品销量 </a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="{{route('order.sevengoods')}}">最近7天</a></li>
+                        <li><a href="{{route('order.thirty')}}">最近三个月</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </li>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>订单 </a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="{{route('order.index')}}">订单列表</a></li>
+                        <li><a href="{{route('order.seven')}}">最近7天</a></li>
+                        <li><a href="{{route('order.thirty')}}">最近三个月</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </li>
+
 {{--                <li><a href="{{route('user.create')}}"> <i class="icon-padnote"></i>Forms </a></li>--}}
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>菜品分类 </a>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>菜品分类 </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         {{--<li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>--}}
                         <li><a href="{{route('menu_category.create')}}">菜品添加分类</a></li>
@@ -150,11 +168,17 @@
                     </ul>
                 </li>
 
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家管理 </a>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>活动管理 </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        {{--<li><a href="{{route('shop.index')}}">商家列表</a></li>--}}
+                        <li><a href="{{route('activity.index')}}">活动列表</a></li>
                         <li><a href="{{route('activity.create')}}">添加活动</a></li>
                         <li><a href="#">Page</a></li>
+                    </ul>
+                </li>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>试用活动 </a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="{{route('event.index')}}">试用活动列表</a></li>
+
                     </ul>
                 </li>
 

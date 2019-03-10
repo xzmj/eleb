@@ -15,7 +15,6 @@ class CreateShopCategoriesTable extends Migration
     {
         Schema::create('shop_categories', function (Blueprint $table) {
             $table->increments('id');
-
             $table->string('name');
             $table->string('img');
             $table->integer('status')->default(0);

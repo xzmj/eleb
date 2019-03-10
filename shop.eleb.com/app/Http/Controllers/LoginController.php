@@ -20,6 +20,7 @@ class LoginController extends Controller
 //      用户登录
         public function create()
         {
+//             echo 111;exit;
             return view('login.create');
         }
 
@@ -27,19 +28,21 @@ class LoginController extends Controller
     {
 //        dd($request);
 
-        $this->validate($request,[
+             $this->validate($request,[
             'name'=>'required',
             'password'=>'required'
         ]);
         if(Auth::attempt([
-            'name'=>$request->name,
-            'password'=>$request->password,
-        ],$request->has('rememberMe'))& auth()->user()->status===1 )//密码比对成功后存入session 同时判断对当前的用户状态栏是否为1
+                'name'=>$request->name,
+                'password'=>$request->password,
+            ],$request->has('rememberMe'))
+//            & auth()->user()->status===1
+        )//密码比对成功后存入session 同时判断对当前的用户状态栏是否为1
 
         {//账号密码正确 ，创建会话（保存当前用户的信息到session）
 
 //            判断账户是否状态可用
-            return redirect()->intended(route('menu.index'))->with('success','登录成功');
+            return redirect()->intended(route('activity.index'))->with('success','登录成功');
         }else{//账号密码不正确
 
             return back()->with('danger','账号密码不正确或账号停用请联系管理员');

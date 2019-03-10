@@ -15,15 +15,12 @@ class UserController extends Controller
 
 
 
-//
-//    public function __construct()
-//    {
-//        //只能游客才能访问
-//        $this->middleware('guest',[
-//////            'only'=>['login.create']
-//            'except'=>['login','create']
-//        ]);
-//    }
+//页面管理
+    public function __construct()
+    {
+        //设置中间件
+        $this->middleware('auth');
+    }
 
     //
     public function index(){

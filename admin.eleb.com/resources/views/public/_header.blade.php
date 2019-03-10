@@ -24,6 +24,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
 <div class="page">
@@ -129,41 +130,88 @@
                 <li ><a href="#"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="#"> <i class="icon-grid"></i>Tables </a></li>
                 <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                <li><a href="{{route('shop_category.create')}}"> <i class="icon-padnote"></i>Forms </a></li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家分类 </a>
-                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>
-                        <li><a href="{{route('shop_category.create')}}">商品添加分类</a></li>
 
-                    </ul>
-                </li>
 
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Admin </a>
-                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{{route('admin.index')}}">管理员列表</a></li>
-                        <li><a href="{{route('admin.create')}}">添加管理员</a></li>
+<?php   $topnavs=App\Models\Nav::where('pid','0')->get();
+        $navs=App\Models\Nav::all();
 
-                    </ul>
-                </li>
+        ?>
+            @foreach($topnavs as $topnav)
+                  @if(auth()->user())
+                        @if(\Illuminate\Support\Facades\Auth::user()->can($topnav->permission->name))
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>{{$topnav->name}} </a>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
 
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家管理 </a>
-                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{{route('shop.index')}}">商家列表</a></li>
-                        <li><a href="{{route('shop.create')}}">添加商家</a></li>
-                        <li><a href="{{route('user.index')}}">商家账号列表</a></li>
-                        <li><a href="{{route('user.create')}}">添加商家账号</a></li>
-                        <li><a href="#">Page</a></li>
-                    </ul>
-                </li>
 
-                <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>
-            </ul><span class="heading">Extras</span>
-            <ul class="list-unstyled">
-                <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
-                <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
-                <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
-                <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
+                <li>
+            @foreach($navs as $nav)
+                        @if(\Illuminate\Support\Facades\Auth::user()->can($nav->permission->name))
+            @if($nav->pid==$topnav->id)
+            <a href="{{route($nav->url)}}">{{$nav->name}}</a>
+            @endif
+                        @endif
+            @endforeach
+            </li>
+
+
+
             </ul>
+            </li>
+                    @endif
+                    @endif
+            @endforeach
+
+            </ul>
+
+
+
+
+
+                {{--<li><a href="{{route('member.index')}}"> <i class="icon-padnote"></i>饿了吧会员列表 </a></li>--}}
+                {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>RBAC </a>--}}
+                    {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
+                        {{--<li><a href="{{route('permission.index')}}">权限列表</a></li>--}}
+                        {{--<li><a href="{{route('permission.create')}}">添加权限</a></li>--}}
+                        {{--<li><a href="{{route('role.index')}}">角色列表</a></li>--}}
+                        {{--<li><a href="{{route('role.create')}}">添加角色</a></li>--}}
+
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家分类 </a>--}}
+                    {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
+                        {{--<li><a href="{{route('shop_category.index')}}">商品分类列表</a></li>--}}
+                        {{--<li><a href="{{route('shop_category.create')}}">商品添加分类</a></li>--}}
+
+                    {{--</ul>--}}
+                {{--</li>--}}
+
+                {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Admin </a>--}}
+                    {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
+                        {{--<li><a href="{{route('admin.index')}}">管理员列表</a></li>--}}
+                        {{--<li><a href="{{route('admin.create')}}">添加管理员</a></li>--}}
+
+                    {{--</ul>--}}
+                {{--</li>--}}
+
+                {{--<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>商家管理 </a>--}}
+                    {{--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">--}}
+                        {{--<li><a href="{{route('shop.index')}}">商家列表</a></li>--}}
+                        {{--<li><a href="{{route('shop.create')}}">添加商家</a></li>--}}
+                        {{--<li><a href="{{route('user.index')}}">商家账号列表</a></li>--}}
+                        {{--<li><a href="{{route('user.create')}}">添加商家账号</a></li>--}}
+                        {{--<li><a href="#">Page</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+
+                {{--<li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>--}}
+            {{--</ul><span class="heading">Extras</span>--}}
+            {{--<ul class="list-unstyled">--}}
+                {{--<li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>--}}
+                {{--<li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>--}}
+                {{--<li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>--}}
+                {{--<li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>--}}
+            {{--</ul>--}}
         </nav>
         <div class="content-inner">
             <!-- Page Header-->
+
