@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\controllers;
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\EventPrize;
 use App\Models\EventMember;
-class Eventcontroller extends controller
+class EventController extends Controller
 {
     //
 
